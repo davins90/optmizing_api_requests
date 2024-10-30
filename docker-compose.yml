@@ -1,0 +1,15 @@
+version: '3'
+services:
+  jupyterlab:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jupyterlab
+    working_dir: /home/jovyan/src
+    tty: true
+    volumes:
+      - ./src:/home/jovyan/src
+    ports: 
+      - '8080:8080'
+    command: start-notebook.sh --NotebookApp.ip=0.0.0.0 --NotebookApp.port=8080 --NotebookApp.token='' --NotebookApp.allow_origin='*'
